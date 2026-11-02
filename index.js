@@ -1,5 +1,5 @@
 require("dotenv").config(); // Permet d'activer les variables d'environnement qui se trouvent dans le fichier `.env`
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 // Utilisation du port défini dans le fichier .env
 app.listen(process.env.PORT, () => {
   console.log("Server started");
@@ -7,7 +7,11 @@ app.listen(process.env.PORT, () => {
 const express = require("express");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
-
+cloudinary.config({
+  CLOUD_NAME: process.env.CLOUD_NAME,
+  API_KEY: process.env.CLOUD_API_KEY,
+  API_SECRET: process.env.CLOUD_API_SECRET,
+});
 const app = express();
 
 app.use(express.json());
